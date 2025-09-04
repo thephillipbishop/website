@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+    background-color: #fff;
+    color: #000;
+}
+
+header, footer {
+    text-align: center;
+    background-color: #ddd;
+    padding: 10px 0;
+}
+
+header img, footer img {
+    width: 40px;
+    height: 40px;
+    margin: 0 2px;
+}
+
+nav {
+    float: left;
+    width: 150px;
+    background-color: #eee;
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+nav a {
+    display: block;
+    padding: 5px 0;
+    color: blue;
+    text-decoration: underline;
+}
+
+main {
+    margin-left: 170px;
+    padding: 10px;
+}
+
+.slider-container {
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    border: 1px solid black;
+    margin: 20px auto;
+    position: relative;
+}
+
+.slider-container img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

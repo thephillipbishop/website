@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Phillip Bishop - About</title>
+    <title>Phillip Bishop - Slider</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,9 +26,12 @@
 </nav>
 
 <main>
-    <h1>Phillip Bishop</h1>
-    <p>Welcome to my old-school website. Nothing fancy, just me.</p>
-    <p>This is the about page. You can put information about yourself here.</p>
+    <h1>Simple Slider</h1>
+    <div class="slider-container">
+        <img src="images/eagle3.gif" style="z-index:1">
+        <img src="images/eagle4.gif" style="z-index:0">
+        <img src="images/eagle5.gif" style="z-index:0">
+    </div>
 </main>
 
 <footer>
@@ -41,6 +44,17 @@
     <img src="images/eagle7.gif">
     <img src="images/eagle8.gif">
 </footer>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.slider-container img');
+
+setInterval(() => {
+    slides[current].style.zIndex = 0;
+    current = (current + 1) % slides.length;
+    slides[current].style.zIndex = 1;
+}, 2000);
+</script>
 
 </body>
 </html>
