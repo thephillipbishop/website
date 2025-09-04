@@ -1,29 +1,49 @@
-body {
+/* Reset & body layout */
+html, body {
+    height: 100%;
     margin: 0;
     font-family: "Courier New", Courier, monospace;
     background-color: #fff;
     color: #000;
+    display: flex;
+    flex-direction: column;
 }
 
-header, footer {
+/* Header */
+header {
     text-align: center;
     background-color: #ddd;
     padding: 10px 0;
 }
 
-header img, footer img {
-    width: 40px;
-    height: 40px;
+header img {
+    width: 8%;
     margin: 0 2px;
 }
 
-nav {
-    float: left;
-    width: 150px;
-    background-color: #eee;
-    height: 100vh;
+/* Main content area with flex */
+main {
+    flex: 1;              /* takes remaining space */
+    display: flex;         /* side-by-side content & nav */
     padding: 10px;
     box-sizing: border-box;
+}
+
+/* Left content (expands) */
+.content {
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Right nav fills full height */
+nav {
+    width: 150px;
+    background-color: #eee;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;  /* stack links vertically */
+    height: 100%;            /* take all height of main */
 }
 
 nav a {
@@ -33,11 +53,19 @@ nav a {
     text-decoration: underline;
 }
 
-main {
-    margin-left: 170px;
-    padding: 10px;
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #ddd;
+    padding: 10px 0;
 }
 
+footer img {
+    width: 8%;
+    margin: 0 2px;
+}
+
+/* Slider container */
 .slider-container {
     width: 400px;
     height: 300px;
