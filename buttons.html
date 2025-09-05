@@ -45,10 +45,12 @@
         <div class="content" id="interactive-container"></div>
         <nav>
             <a href="index.html">About</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="buttons.html">Buttons</a>
-            <a href="links.html">Links</a>
             <a href="videos.html">Videos</a>
+            <a href="links.html">Links</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="eagles.html">Eagles</a>
+            <a href="buttons.html">Buttons</a>
+            <a href="form.html">Form</a>
         </nav>
     </main>
 
@@ -83,8 +85,7 @@
         ];
         const colors = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#fff', '#000'];
 
-        // Generate 100 interactive elements
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < 200; i++) {
             const type = elementTypes[Math.floor(Math.random() * elementTypes.length)];
             let el, label;
             switch (type) {
@@ -126,7 +127,7 @@
                     break;
                 case 'select':
                     el = document.createElement('select');
-                    const numOptions = Math.floor(Math.random() * 5) + 2; // 2-6 options
+                    const numOptions = Math.floor(Math.random() * 5) + 2;
                     const used = new Set();
                     for (let j = 0; j < numOptions; j++) {
                         let optionLabel;
@@ -173,7 +174,6 @@
                 left += speeds[i].x;
                 rot += speeds[i].rot;
 
-                // bounce off edges
                 if (top < 0 || top > window.innerHeight - 50) speeds[i].y *= -1;
                 if (left < 0 || left > window.innerWidth - 150) speeds[i].x *= -1;
 
