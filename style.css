@@ -7,7 +7,6 @@ html, body {
     color: #000;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
@@ -22,11 +21,10 @@ header img {
 }
 
 main {
-    flex: 1 1 auto;
+    flex: 1;
     display: flex;
     padding: 10px;
     box-sizing: border-box;
-    min-height: 0;
 }
 
 .content {
@@ -50,6 +48,7 @@ nav a {
     color: blue;
     text-decoration: underline;
 }
+
 footer {
     text-align: center;
     background-color: #ddd;
@@ -76,4 +75,12 @@ footer img {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.eagle-grid img {
+    width: 380px;
+    height: 380px;
+    object-fit: cover;
+    border: 2px solid #000;
+    margin: auto;
 }

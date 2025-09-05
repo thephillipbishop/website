@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phillip Bishop - Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/me.png" type="image/png">
+</head>
+<body>
+
+<header>
+    <img src="images/eagle1.gif">
+    <img src="images/eagle2.gif">
+    <img src="images/eagle3.gif">
+    <img src="images/eagle4.gif">
+    <img src="images/eagle5.gif">
+    <img src="images/eagle6.gif">
+    <img src="images/eagle7.gif">
+    <img src="images/eagle8.gif">
+</header>
+
+<main>
+    <div class="content">
+        <h1>Give me your information if you feel like it</h1>
+
+        <form>
+            <label>First name:</label><br>
+            <input type="text" id="fname"><br>
+            <p id="fnameMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Last name:</label><br>
+            <input type="text" id="lname"><br>
+            <p id="lnameMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Home Address:</label><br>
+            <input type="text" id="address"><br>
+            <p id="addressMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Social Security Number:</label><br>
+            <input type="text" id="ssn"><br>
+            <p id="ssnMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Password:</label><br>
+            <input type="password" id="pw1" ><br>
+            <p id="pwMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Confirm your password:</label><br>
+            <input type="password" id="pw2" ><br>
+            <p id="pwMessage" style="color:red; font-weight:bold;"></p>
+
+            <label>Email Address:</label><br>
+            <input type="email" id="email"><br>
+            <p id="emailMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Backup Email Address:</label><br>
+            <input type="email" id="backupEmail"><br>
+            <p id="backupMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Security Question (Must answer it below):</label><br>
+            <select>
+                <option>What was the name of the street where your failed your driving test?</option>
+                <option>What was the first restaurant where you accidentally ordered the wrong meal?</option>
+                <option>Which teacher gave you detention for something you didn't do?</option>
+                <option>What was the first concert you left before it ended?</option>
+                <option>Which airport did you first get stuck overnight in?</option>
+                <option>Who was the first neighbor to call the police on you?</option>
+                <option>What was the first video game you returned to the store?</option>
+                <option>What's the name of the first person who blocked you on social media?</option>
+                <option>What city were you in when you lost your phone for the first time?</option>
+                <option>What was the first book you borrowed and never returned?</option>
+            </select><br><br>
+
+            <label>Your Answer:</label><br>
+            <input type="text" id="securityA"><br>
+            <p id="secMessage" style="color:red; font-weight:bold;"></p>
+
+            <label>Credit Card Number:</label><br>
+            <input type="text" id="ccNumber"><br>
+            <p id="ccMessage" style="color:red; font-weight:bold;"></p>
+
+            <label>Credit Card Expiration Date:</label><br>
+            <input type="date" id="ccExp"><br>
+            <p id="expMessage" style="color:red; font-weight:bold;"></p>
+            
+            <label>CVV (3 numbers at the back):</label><br>
+            <input type="number" id="ccv"><br>
+            <p id="ccvMessage" style="color:red; font-weight:bold;"></p>
+
+            <label>Birthday:</label><br>
+            <input type="date" id="birthday"><br>
+            <p id="bdayMsg" style="color:red; font-weight:bold;"></p><br>
+
+            <label>Profile picture:</label><br>
+            <input type="file" id="bigFile"><br>
+            <p id="fileMessage" style="color:red; font-weight:bold;"></p>
+
+            <label>Favorite Color:</label><br>
+            <input type="color" id="favColor"><br>
+            <p id="colorMessage" style="color:red; font-weight:bold;"></p>
+
+            <label>Do You Like Eagles?</label><br>
+            <input type="radio" name="eagles" value="yes"> Yes
+            <input type="radio" name="eagles" value="no" id="noEagles"> No<br><br>
+
+            <label>Write Literally Anything Here:</label><br>
+            <textarea rows="4" cols="40" id="limited"></textarea><br>
+            <p id="limitMessage" style="color:red; font-weight:bold;"></p>
+
+            <button type="submit" onclick="return validate()">Submit to Phillip Bishop</button>
+            
+            <p id="trickMessage" style="color:red; font-weight:bold;"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("noEagles").addEventListener("change", function() {
+            window.location.href = "https://www.google.com/search?q=why+dont+you+like+eagles+???";
+        });
+
+        function validate() {
+            alert("Please fix the fields first before submitting.");
+            return false;
+        }
+
+        document.getElementById("pw2").addEventListener("input", function () {
+            const p1 = document.getElementById("pw1").value;
+            const p2 = document.getElementById("pw2").value;
+            const msg = document.getElementById("pwMessage");
+
+            if (p1 === p2) {
+                msg.textContent = "Passwords do not match.";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("bigFile").addEventListener("change", function() {
+            const msg = document.getElementById("fileMessage");
+            const file = this.files[0];
+
+            if (!file) {
+                msg.textContent = "";
+                return;
+            }
+
+            const MIN_SIZE = 1024 * 1024 * 1024;
+
+            if (file.size < MIN_SIZE) {
+                msg.textContent = "Your profile picture is too small. Must be at least 1 GB!";
+                this.value = "";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        function isPrime(n) {
+            if (n < 2) return false;
+            if (n % 2 === 0) return n === 2;
+            const limit = Math.floor(Math.sqrt(n));
+            for (let i = 3; i <= limit; i += 2) {
+                if (n % i === 0) return false;
+            }
+            return true;
+        }
+
+        document.getElementById("ccNumber").addEventListener("input", function() {
+            const msg = document.getElementById("ccMessage");
+            const val = this.value.trim();
+
+            if (!/^\d+$/.test(val)) {
+                msg.textContent = "Credit card must be numeric.";
+                return;
+            }
+
+            const num = BigInt(val);
+            if (num > Number.MAX_SAFE_INTEGER) {
+                msg.textContent = "";
+                return;
+            }
+
+            if (isPrime(Number(num))) {
+                msg.textContent = "";
+            } else {
+                msg.textContent = "Your credit card number must be a prime number.";
+            }
+        });
+
+        const goal = {r: 4, g: 156, b: 172}; 
+        // hey stop looking at the code, you're not supposed to see this!!!
+        // You are NOT a true fan if you see this...
+
+        function hexToRgb(hex) {
+            const bigint = parseInt(hex.slice(1), 16);
+            return {
+                r: (bigint >> 16) & 255,
+                g: (bigint >> 8) & 255,
+                b: bigint & 255
+            };
+        }
+
+        function describeDiff(diff) {
+            const abs = Math.abs(diff);
+            if (abs < 10) return "just a tiny bit";
+            if (abs < 30) return "a bit";
+            if (abs < 70) return "quite a lot";
+            return "a whole lot";
+        }
+
+        document.getElementById("favColor").addEventListener("input", function() {
+            const chosen = hexToRgb(this.value);
+            const diffs = {
+                r: chosen.r - goal.r,
+                g: chosen.g - goal.g,
+                b: chosen.b - goal.b
+            };
+
+            let maxChannel = "r";
+            if (Math.abs(diffs.g) > Math.abs(diffs[maxChannel])) maxChannel = "g";
+            if (Math.abs(diffs.b) > Math.abs(diffs[maxChannel])) maxChannel = "b";
+
+            const msg = document.getElementById("colorMessage");
+            const diff = diffs[maxChannel];
+            if (diff === 0) {
+                msg.textContent = "";
+            } else {
+                const moreOrLess = diff > 0 ? "less" : "more";
+                const channelName = maxChannel === "r" ? "red" : maxChannel === "g" ? "green" : "blue";
+                msg.textContent = `I don't think that's your favorite color. It should be ${describeDiff(diff)} ${moreOrLess} ${channelName}.`;
+            }
+        });
+
+        document.getElementById("ccExp").addEventListener("change", function() {
+            const msg = document.getElementById("expMessage");
+            const chosen = new Date(this.value);
+            if (isNaN(chosen)) {
+                msg.textContent = "";
+                return;
+            }
+
+            const now = new Date();
+            const minAcceptable = new Date();
+            minAcceptable.setFullYear(now.getFullYear() + 5);
+
+            if (chosen < minAcceptable) {
+                msg.textContent = "Sorry, but we don't accept credit cards that will expire in less than 5 years.";
+                this.value = "";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("ccv").addEventListener("input", function() {
+            const msg = document.getElementById("ccvMessage");
+            if (this.value.length !== 7) {
+                msg.textContent = "Invalid CCV. Must be exactly 7 digits.";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("limited").addEventListener("input", function() {
+            const msg = document.getElementById("limitMessage");
+            if (this.value.length >= 10) {
+                msg.textContent = "That's enough.";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("securityA").addEventListener("input", function() {
+            const msg = document.getElementById("secMessage");
+
+            if (this.value.trim().length === 0) {
+                msg.textContent = "";
+                return;
+            }
+
+            if (Math.random() < 0.9) {
+                msg.textContent = "Sorry, that answer is incorrect.";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("fname").addEventListener("input", function() {
+            const msg = document.getElementById("fnameMsg");
+            if (this.value.length < 15) {
+                msg.textContent = "First name must be at least 15 characters long.";
+            } else if (this.value.length > 15){
+                msg.textContent = "First name must be at most 15 characters long.";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("lname").addEventListener("input", function() {
+            const msg = document.getElementById("lnameMsg");
+            if (!/\d/.test(this.value)) {
+                msg.textContent = "Last name must contain at least one number.";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("address").addEventListener("input", function() {
+            const msg = document.getElementById("addressMsg");
+            if (!/avenue/i.test(this.value)) {
+                msg.textContent = "Address must include 'Avenue'.";
+            } else {
+                msg.textContent = "";
+            }
+        });
+
+        document.getElementById("ssn").addEventListener("input", function() {
+            const msg = document.getElementById("ssnMsg");
+            const num = Number(this.value);
+            if (!/^\d{9}$/.test(this.value)) {
+                msg.textContent = "SSN must be exactly 9 digits.";
+            } else {
+                msg.textContent = "That SSN is already in use by 3 people.";
+            }
+        });
+
+        function hashCode(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = (hash << 5) - hash + str.charCodeAt(i);
+                hash |= 0;
+            }
+            return hash;
+        }
+
+        function getUsageByPassword(pw) {
+            if (pw.length === 0) return 0;
+
+            const hash = hashCode(pw);
+
+            let base = 100 * Math.exp(-0.5 * pw.length);
+
+            const noise = (hash % 11) - 5;
+            const usage = Math.max(0, Math.floor(base + noise));
+            return usage;
+        }
+
+        document.getElementById("pw1").addEventListener("input", function() {
+            const msg = document.getElementById("pwMsg");
+            const usage = getUsageByPassword(this.value);
+
+            if (usage > 1) {
+                msg.textContent = usage + " people already use this password.";
+            } else if (usage === 1) {
+                msg.textContent = "";
+            } else {
+                msg.textContent = "No one else uses this password. That probably means it's too weak.";
+            }
+        });
+
+        function validateEmail(email) {
+            if (!email.includes('@')) return "Must contain @.";
+            const parts = email.split('@');
+            if (parts[0].length < 10) return "Username part too short, make it at least 10 characters.";
+            if (!email.endsWith('.biz')) return "Sorry, we only accept .biz emails.";
+            return "";
+        }
+
+        document.getElementById("email").addEventListener("input", function() {
+            const msg = document.getElementById("emailMsg");
+            msg.textContent = validateEmail(this.value);
+        });
+
+        document.getElementById("backupEmail").addEventListener("input", function() {
+            const msg = document.getElementById("backupMsg");
+            msg.textContent = validateEmail(this.value);
+        });
+
+        document.getElementById("birthday").addEventListener("change", function() {
+            const msg = document.getElementById("bdayMsg");
+            const val = this.value;
+            if (!val) {
+                msg.textContent = "";
+                return;
+            }
+
+            const date = new Date(val);
+            const today = new Date();
+
+            const parts = val.split('-');
+            const year = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10);
+            const day = parseInt(parts[2], 10);
+
+            if (month === 9 && day === 2) {
+                msg.textContent = "Sorry, you can't have the same birthday as me.";
+                return;
+            }
+
+            if (month === 10 && day === 24) {
+                msg.textContent = "Sorry, I don't think that's correct.";
+                return;
+            }
+
+            const dayOfWeek = date.getDay();
+            if (dayOfWeek === 5 || dayOfWeek === 6) {
+                msg.textContent = "Weekends are not allowed. Pick a weekday.";
+                return;
+            }
+
+            const age = today.getFullYear() - date.getFullYear() - 
+                        (today.getMonth() < date.getMonth() || 
+                        (today.getMonth() === date.getMonth() && today.getDate() < date.getDate()) ? 1 : 0);
+            if (age < 18) {
+                msg.textContent = "Must be at least 18 years old.";
+                return;
+            }
+
+            if (age >= 100) {
+                msg.textContent = "I don't think you should be alive anymore.";
+                return;
+            }
+
+            if (age === 51) {
+                msg.textContent = "You can't be my age.";
+                return;
+            }
+
+            msg.textContent = "";
+        });
+    </script>
+
+    <nav>
+        <a href="index.html">About</a>
+        <a href="videos.html">Videos</a>
+        <a href="links.html">Links</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="eagles.html">Eagles</a>
+        <a href="buttons.html">Buttons</a>
+        <a href="form.html">Form</a>
+    </nav>
+</main>
+
+<footer>
+    <img src="images/eagle1.gif">
+    <img src="images/eagle2.gif">
+    <img src="images/eagle3.gif">
+    <img src="images/eagle4.gif">
+    <img src="images/eagle5.gif">
+    <img src="images/eagle6.gif">
+    <img src="images/eagle7.gif">
+    <img src="images/eagle8.gif">
+</footer>
+
+</body>
+</html>

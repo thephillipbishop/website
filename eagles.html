@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phillip Bishop - Eagles</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/me.png" type="image/png">
+</head>
+<body>
+
+<header>
+    <img src="images/eagle1.gif">
+    <img src="images/eagle2.gif">
+    <img src="images/eagle3.gif">
+    <img src="images/eagle4.gif">
+    <img src="images/eagle5.gif">
+    <img src="images/eagle6.gif">
+    <img src="images/eagle7.gif">
+    <img src="images/eagle8.gif">
+</header>
+
+<main>
+    <div class="content">
+       <h1>Eagles</h1>
+       <div class="eagle-grid" id="eagleGrid">
+    </div>
+    </div>
+    <nav>
+        <a href="index.html">About</a>
+        <a href="videos.html">Videos</a>
+        <a href="links.html">Links</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="eagles.html">Eagles</a>
+        <a href="buttons.html">Buttons</a>
+        <a href="form.html">Form</a>
+    </nav>
+</main>
+
+<script>
+    const grid = document.getElementById("eagleGrid");
+    for (let i = 1; i <= 311; i++) {
+        const img = document.createElement("img");
+        img.src = `images/eagles/EAGLE (${i}).avif`;
+        img.alt = `Eagle ${i}`;
+        grid.appendChild(img);
+    }
+
+    let baseInterval = 1000;
+    const minInterval = 100;
+    const decayRate = 0.98;
+
+    function spawnFlyingEagle() {
+        const eagle = document.createElement("img");
+        eagle.src = `images/eagle2.gif`;
+        eagle.style.position = "absolute";
+        eagle.style.zIndex = 9999;
+        eagle.style.width = "350px";
+        eagle.style.height = "350px";
+
+        const mainHeight = document.querySelector("main").offsetHeight;
+        const mainTop = document.querySelector("main").offsetTop;
+
+        const top = mainTop + Math.random() * (mainHeight - 100);
+        eagle.style.top = top + "px";
+
+        let left = Math.random() < 0.5 ? -100 : document.body.offsetWidth + 100;
+        eagle.style.left = left + "px";
+
+        const direction = left < 0 ? 1 : -1;
+        if (direction === -1) {
+            eagle.style.transform = "scaleX(-1)";
+        }
+
+        document.body.appendChild(eagle);
+
+        const speed = Math.random() * 3 + 2;
+
+        function fly() {
+            left += speed * direction;
+            eagle.style.left = left + "px";
+
+            if ((direction === 1 && left > document.body.offsetWidth + 100) ||
+                (direction === -1 && left < -100)) {
+                eagle.remove();
+            } else {
+                requestAnimationFrame(fly);
+            }
+        }
+        fly();
+    }
+
+    function spawnLoop() {
+        spawnFlyingEagle();
+        baseInterval = Math.max(minInterval, baseInterval * decayRate);
+        setTimeout(spawnLoop, baseInterval);
+    }
+    spawnLoop();
+</script>
+
+<footer>
+    <img src="images/eagle1.gif">
+    <img src="images/eagle2.gif">
+    <img src="images/eagle3.gif">
+    <img src="images/eagle4.gif">
+    <img src="images/eagle5.gif">
+    <img src="images/eagle6.gif">
+    <img src="images/eagle7.gif">
+    <img src="images/eagle8.gif">
+</footer>
+
+</body>
+</html>
